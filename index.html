@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кто хочет стать экономистом</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <!-- декоративный фон (звёзды/сетка) -->
+  <div class="bg-stars" aria-hidden="true"></div>
+
+  <main id="app" class="app">
+
+    <!-- ================= ЭКРАН 1: SETUP ================= -->
+    <section id="screen-setup" class="screen" data-screen="setup" hidden>
+      <div class="window setup-window">
+        <div class="window__titlebar">
+          <span class="window__title">SETUP // НОВАЯ ИГРА</span>
+          <span class="window__dots" aria-hidden="true"></span>
+        </div>
+        <div class="window__body">
+          <h1 class="screen__heading">ВВЕДИТЕ НАЗВАНИЯ КОМАНД</h1>
+          <p class="screen__hint">Три команды. Имена не должны быть пустыми или одинаковыми.</p>
+
+          <form id="setup-form" class="setup-form" novalidate>
+            <label class="field">
+              <span class="field__label">Команда 1</span>
+              <input class="field__input" type="text" name="team-1" maxlength="24" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span class="field__label">Команда 2</span>
+              <input class="field__input" type="text" name="team-2" maxlength="24" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span class="field__label">Команда 3</span>
+              <input class="field__input" type="text" name="team-3" maxlength="24" autocomplete="off" />
+            </label>
+
+            <p id="setup-error" class="form-error" role="alert" hidden></p>
+
+            <div class="row">
+              <button type="submit" class="btn btn--primary">НАЧАТЬ ИГРУ</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ЭКРАН 2: GAME ================= -->
+    <section id="screen-game" class="screen" data-screen="game" hidden>
+      <!-- верхняя панель: команды + сброс -->
+      <header class="game-topbar">
+        <div class="teams-bar" id="teams-bar">
+          <!-- карточки команд рендерит js/screens/game.js (этап 3+) -->
+          <div class="team-card team-card--placeholder">TEAM 1</div>
+          <div class="team-card team-card--placeholder">TEAM 2</div>
+          <div class="team-card team-card--placeholder">TEAM 3</div>
+        </div>
+
+        <div class="topbar-actions">
+          <button id="btn-reset" class="btn btn--danger" type="button" title="Сбросить текущую игру">
+            СБРОСИТЬ ИГРУ
+          </button>
+        </div>
+      </header>
+
+      <!-- основная зона: лестница слева, вопрос справа -->
+      <div class="game-main">
+        <aside class="ladder" id="ladder" aria-label="Шкала очков">
+          <!-- ячейки 800..0 рендерит js/ui/ladder.js (этап 3+) -->
+          <div class="ladder__placeholder">ЛЕСТНИЦА 0 … 800</div>
+        </aside>
+
+        <section class="question-area" id="question-area">
+          <!-- карточка вопроса рендерит js/ui/question.js (этап 3+) -->
+          <div class="window question-window">
+            <div class="window__titlebar">
+              <span class="window__title" id="question-title">ВОПРОС</span>
+              <span class="window__dots" aria-hidden="true"></span>
+            </div>
+            <div class="window__body">
+              <p class="question__text" id="question-text">Здесь будет текст вопроса.</p>
+              <div class="options" id="options">
+                <button class="option" type="button" disabled>Вариант A</button>
+                <button class="option" type="button" disabled>Вариант Б</button>
+                <button class="option" type="button" disabled>Вариант В</button>
+                <button class="option" type="button" disabled>Вариант Г</button>
+              </div>
+
+              <div class="question__footer">
+                <div class="answer-actions">
+                  <button id="btn-next" class="btn btn--primary" type="button" disabled>ДАЛЕЕ</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ================= ЭКРАН 3: RESULTS ================= -->
+    <section id="screen-results" class="screen" data-screen="results" hidden>
+      <div class="window results-window">
+        <div class="window__titlebar">
+          <span class="window__title">РЕЗУЛЬТАТЫ ИГРЫ</span>
+          <span class="window__dots" aria-hidden="true"></span>
+        </div>
+        <div class="window__body">
+          <h1 class="screen__heading">ФИНАЛЬНОЕ ТАБЛО</h1>
+          <ol class="results-list" id="results-list">
+            <li class="results-item results-item--placeholder">1-е место — TBD</li>
+            <li class="results-item results-item--placeholder">2-е место — TBD</li>
+            <li class="results-item results-item--placeholder">3-е место — TBD</li>
+          </ol>
+          <div class="row">
+            <button class="btn btn--primary" type="button" id="btn-play-again">СЫГРАТЬ ЕЩЁ</button>
+            <button class="btn btn--danger" type="button" id="btn-hard-reset">НАЧАТЬ СНАЧАЛА</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- слой модалок (всплывающие окна событий) -->
+  <div id="modal-root" class="modal-root" aria-hidden="true"></div>
+
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

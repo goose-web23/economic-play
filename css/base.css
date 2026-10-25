@@ -1,0 +1,72 @@
+/* ===== Переменные палитры (пиксель-неон) ===== */
+:root {
+  --bg-0: #0a0a1a;       /* глубокий фон */
+  --bg-1: #14142a;       /* панель */
+  --bg-2: #1f1f3f;       /* приподнятая панель */
+
+  --neon-pink:   #ff5cf0;
+  --neon-lime:   #a8ff3e;
+  --neon-cyan:   #5ce1ff;
+  --neon-violet: #9b5cff;
+  --neon-yellow: #ffd93e;
+
+  --ink:      #e8e8ff;   /* основной текст */
+  --ink-dim:  #8a8ab0;   /* приглушённый текст */
+
+  --ok:   #a8ff3e;
+  --bad:  #ff5c7a;
+  --warn: #ffd93e;
+
+  --border-outer: #000000;
+  --border-inner: var(--neon-violet);
+
+  --font-pixel: "Press Start 2P", "Courier New", monospace;
+  --font-mono:  "VT323", "Courier New", monospace;
+
+  --px: 3px; /* размер «пиксельного» сдвига */
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg-0);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  line-height: 1.4;
+  overflow-x: hidden;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+}
+
+h1, h2, h3, .pixel {
+  font-family: var(--font-pixel);
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+button { font-family: inherit; }
+
+/* ===== Декоративный фон: звёзды + сетка ===== */
+.bg-stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--bg-0);
+  background-image:
+    radial-gradient(1px 1px at 20px 30px,  #ffffff88, transparent 60%),
+    radial-gradient(1px 1px at 120px 80px,#ffffff55, transparent 60%),
+    radial-gradient(1px 1px at 200px 160px,#ffffff66, transparent 60%),
+    radial-gradient(1px 1px at 320px 60px, #ffffff44, transparent 60%),
+    radial-gradient(1px 1px at 380px 220px,#ffffff77, transparent 60%),
+    linear-gradient(180deg, #0a0a1a 0%, #14142a 60%, #1a1030 100%);
+  background-size: 420px 260px, 420px 260px, 420px 260px, 420px 260px, 420px 260px, 100% 100%;
+}
